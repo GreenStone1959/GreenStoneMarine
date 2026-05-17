@@ -76,12 +76,16 @@ export default function Navbar() {
                   style={{
                     fontFamily: "'Cinzel', serif",
                     fontSize: "0.55rem",
-                    letterSpacing: "0.3em",
                     color: "oklch(0.72 0.12 78)",
                     lineHeight: 1,
+                    display: "flex",
+                    justifyContent: "space-between",
+                    letterSpacing: "normal",
                   }}
                 >
-                  MARINE
+                  {'M·A·R·I·N·E'.split('·').map((char, i) => (
+                    <span key={i}>{char}</span>
+                  ))}
                 </div>
               </div>
             </div>
