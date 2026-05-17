@@ -3,6 +3,12 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ============================================================
+   BLUEWATER MARINE GROUP — "NAUTICAL NOIR" DESIGN SYSTEM
+   Art Deco × Dark Luxury Editorial
+   Ocean at night as canvas. Gold as the only accent.
+   ============================================================ */
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -40,77 +46,56 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Nautical Noir custom tokens */
+  --color-gold: oklch(0.72 0.12 78);
+  --color-gold-light: oklch(0.82 0.10 78);
+  --color-gold-dark: oklch(0.55 0.10 78);
+  --color-navy-deep: oklch(0.12 0.025 255);
+  --color-navy-surface: oklch(0.17 0.025 255);
+  --color-navy-card: oklch(0.20 0.022 255);
+  --color-ivory: oklch(0.94 0.008 78);
+  --color-slate-marine: oklch(0.30 0.02 255);
 }
 
 :root {
-  --primary: var(--color-blue-700);
-  --primary-foreground: var(--color-blue-50);
-  --sidebar-primary: var(--color-blue-600);
-  --sidebar-primary-foreground: var(--color-blue-50);
-  --chart-1: var(--color-blue-300);
-  --chart-2: var(--color-blue-500);
-  --chart-3: var(--color-blue-600);
-  --chart-4: var(--color-blue-700);
-  --chart-5: var(--color-blue-800);
-  --radius: 0.65rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.235 0.015 65);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.235 0.015 65);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.235 0.015 65);
-  --secondary: oklch(0.98 0.001 286.375);
-  --secondary-foreground: oklch(0.4 0.015 65);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.141 0.005 285.823);
+  --radius: 0.25rem;
+  --background: oklch(0.12 0.025 255);
+  --foreground: oklch(0.94 0.008 78);
+  --card: oklch(0.17 0.025 255);
+  --card-foreground: oklch(0.94 0.008 78);
+  --popover: oklch(0.17 0.025 255);
+  --popover-foreground: oklch(0.94 0.008 78);
+  --primary: oklch(0.72 0.12 78);
+  --primary-foreground: oklch(0.12 0.025 255);
+  --secondary: oklch(0.20 0.022 255);
+  --secondary-foreground: oklch(0.94 0.008 78);
+  --muted: oklch(0.20 0.022 255);
+  --muted-foreground: oklch(0.65 0.015 255);
+  --accent: oklch(0.72 0.12 78);
+  --accent-foreground: oklch(0.12 0.025 255);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.623 0.214 259.815);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.235 0.015 65);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
-  --sidebar-accent-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-border: oklch(0.92 0.004 286.32);
-  --sidebar-ring: oklch(0.623 0.214 259.815);
-}
+  --border: oklch(0.30 0.02 255);
+  --input: oklch(0.20 0.022 255);
+  --ring: oklch(0.72 0.12 78);
+  --chart-1: oklch(0.72 0.12 78);
+  --chart-2: oklch(0.55 0.10 78);
+  --chart-3: oklch(0.82 0.10 78);
+  --chart-4: oklch(0.40 0.08 78);
+  --chart-5: oklch(0.65 0.015 255);
+  --sidebar: oklch(0.15 0.025 255);
+  --sidebar-foreground: oklch(0.94 0.008 78);
+  --sidebar-primary: oklch(0.72 0.12 78);
+  --sidebar-primary-foreground: oklch(0.12 0.025 255);
+  --sidebar-accent: oklch(0.20 0.022 255);
+  --sidebar-accent-foreground: oklch(0.94 0.008 78);
+  --sidebar-border: oklch(0.30 0.02 255);
+  --sidebar-ring: oklch(0.72 0.12 78);
 
-.dark {
-  --primary: var(--color-blue-700);
-  --primary-foreground: var(--color-blue-50);
-  --sidebar-primary: var(--color-blue-500);
-  --sidebar-primary-foreground: var(--color-blue-50);
-  --background: oklch(0.141 0.005 285.823);
-  --foreground: oklch(0.85 0.005 65);
-  --card: oklch(0.21 0.006 285.885);
-  --card-foreground: oklch(0.85 0.005 65);
-  --popover: oklch(0.21 0.006 285.885);
-  --popover-foreground: oklch(0.85 0.005 65);
-  --secondary: oklch(0.24 0.006 286.033);
-  --secondary-foreground: oklch(0.7 0.005 65);
-  --muted: oklch(0.274 0.006 286.033);
-  --muted-foreground: oklch(0.705 0.015 286.067);
-  --accent: oklch(0.274 0.006 286.033);
-  --accent-foreground:  oklch(0.92 0.005 65);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.488 0.243 264.376);
-  --chart-1: var(--color-blue-300);
-  --chart-2: var(--color-blue-500);
-  --chart-3: var(--color-blue-600);
-  --chart-4: var(--color-blue-700);
-  --chart-5: var(--color-blue-800);
-  --sidebar: oklch(0.21 0.006 285.885);
-  --sidebar-foreground: oklch(0.85 0.005 65);
-  --sidebar-accent: oklch(0.274 0.006 286.033);
-  --sidebar-accent-foreground:  oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.488 0.243 264.376);
+  /* Custom easing */
+  --ease-out-snappy: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-smooth: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 @layer base {
@@ -119,6 +104,9 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: 'DM Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -131,27 +119,33 @@
   input[type="radio"]:not(:disabled) {
     @apply cursor-pointer;
   }
+
+  h1, h2, h3 {
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: oklch(0.12 0.025 255);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: oklch(0.30 0.02 255);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.72 0.12 78);
+  }
 }
 
 @layer components {
-  /**
-   * Custom container utility that centers content and adds responsive padding.
-   *
-   * This overrides Tailwind's default container behavior to:
-   * - Auto-center content (mx-auto)
-   * - Add responsive horizontal padding
-   * - Set max-width for large screens
-   *
-   * Usage: <div className="container">...</div>
-   *
-   * For custom widths, use max-w-* utilities directly:
-   * <div className="max-w-6xl mx-auto px-4">...</div>
-   */
   .container {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1rem; /* 16px - mobile padding */
+    padding-left: 1rem;
     padding-right: 1rem;
   }
 
@@ -162,16 +156,161 @@
 
   @media (min-width: 640px) {
     .container {
-      padding-left: 1.5rem; /* 24px - tablet padding */
+      padding-left: 1.5rem;
       padding-right: 1.5rem;
     }
   }
 
   @media (min-width: 1024px) {
     .container {
-      padding-left: 2rem; /* 32px - desktop padding */
+      padding-left: 2rem;
       padding-right: 2rem;
-      max-width: 1280px; /* Standard content width */
+      max-width: 1280px;
     }
+  }
+
+  /* Gold rule divider */
+  .gold-rule {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, oklch(0.72 0.12 78), transparent);
+  }
+
+  /* Gold accent line */
+  .gold-line {
+    width: 60px;
+    height: 1px;
+    background: oklch(0.72 0.12 78);
+  }
+
+  /* Section label style (Cinzel small caps) */
+  .section-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: oklch(0.72 0.12 78);
+  }
+
+  /* Display headline */
+  .display-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  /* Vessel card hover */
+  .vessel-card {
+    transition: transform 300ms var(--ease-out-snappy), box-shadow 300ms var(--ease-out-snappy);
+  }
+  .vessel-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px oklch(0 0 0 / 0.5), 0 0 0 1px oklch(0.72 0.12 78 / 0.3);
+  }
+
+  /* Button scale on press */
+  .btn-press:active {
+    transform: scale(0.97);
+    transition: transform 160ms var(--ease-out-snappy);
+  }
+
+  /* Compass rose watermark */
+  .compass-watermark {
+    position: absolute;
+    opacity: 0.04;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* Animate fade-up */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-up {
+    animation: fadeUp 0.7s var(--ease-out-snappy) both;
+  }
+
+  /* Nav link hover */
+  .nav-link {
+    position: relative;
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: oklch(0.75 0.008 78);
+    transition: color 200ms ease;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: oklch(0.72 0.12 78);
+    transition: width 250ms var(--ease-out-snappy);
+  }
+  .nav-link:hover {
+    color: oklch(0.72 0.12 78);
+  }
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* Roman numeral counter */
+  .roman-counter {
+    font-family: 'Cinzel', serif;
+    font-size: 5rem;
+    font-weight: 700;
+    color: oklch(0.72 0.12 78 / 0.08);
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  /* Gold border card */
+  .gold-border-card {
+    border: 1px solid oklch(0.72 0.12 78 / 0.2);
+    transition: border-color 300ms ease;
+  }
+  .gold-border-card:hover {
+    border-color: oklch(0.72 0.12 78 / 0.6);
+  }
+
+  /* Parallax container */
+  .parallax-bg {
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* Text gradient gold */
+  .text-gold-gradient {
+    background: linear-gradient(135deg, oklch(0.82 0.10 78), oklch(0.72 0.12 78), oklch(0.55 0.10 78));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Image overlay */
+  .img-overlay-dark {
+    background: linear-gradient(to bottom, oklch(0 0 0 / 0.2), oklch(0 0 0 / 0.7));
+  }
+
+  /* Stat number */
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 3.5rem;
+    line-height: 1;
+    color: oklch(0.72 0.12 78);
   }
 }
