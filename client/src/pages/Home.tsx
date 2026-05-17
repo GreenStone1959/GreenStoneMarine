@@ -90,7 +90,7 @@ const stats = [
 
 const testimonials = [
   {
-    quote: "Bluewater Marine Group found us our 148-foot Feadship in under six weeks. Their market knowledge and negotiation expertise saved us over $2 million on the transaction.",
+    quote: "GreenStone Marine found us our 148-foot Feadship in under six weeks. Their market knowledge and negotiation expertise saved us over $2 million on the transaction.",
     name: "James R.",
     title: "Private Buyer, Palm Beach",
     stars: 5,

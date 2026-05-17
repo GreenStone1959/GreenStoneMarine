@@ -37,7 +37,7 @@ export default function Footer() {
                     color: "oklch(0.94 0.008 78)",
                   }}
                 >
-                  BLUEWATER
+                  GREENSTONE
                 </div>
                 <div
                   style={{
@@ -47,7 +47,7 @@ export default function Footer() {
                     color: "oklch(0.72 0.12 78)",
                   }}
                 >
-                  MARINE GROUP
+                  MARINE
                 </div>
               </div>
             </div>
@@ -202,7 +202,7 @@ export default function Footer() {
                   style={{ color: "oklch(0.72 0.12 78)" }}
                 />
                 <a
-                  href="mailto:info@bluewatermarine.com"
+                  href="mailto:info@greenstonemarine.com"
                   className="transition-colors duration-200 hover:text-[oklch(0.72_0.12_78)]"
                   style={{
                     color: "oklch(0.60 0.015 255)",
@@ -210,7 +210,7 @@ export default function Footer() {
                     fontFamily: "'DM Sans', sans-serif",
                   }}
                 >
-                  info@bluewatermarine.com
+                  info@greenstonemarine.com
                 </a>
               </li>
             </ul>
@@ -259,7 +259,7 @@ export default function Footer() {
             fontFamily: "'DM Sans', sans-serif",
           }}
         >
-          © {new Date().getFullYear()} Bluewater Marine Group. All rights reserved. Fort Lauderdale, Florida.
+          © {new Date().getFullYear()} GreenStone Marine. All rights reserved. Fort Lauderdale, Florida.
         </p>
         <div className="flex gap-6">
           {["Privacy Policy", "Terms of Service", "IYBA Member"].map((item) => (

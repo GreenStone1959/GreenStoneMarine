@@ -70,7 +70,7 @@ export default function Navbar() {
                     lineHeight: 1.2,
                   }}
                 >
-                  BLUEWATER
+                  GREENSTONE
                 </div>
                 <div
                   style={{
@@ -81,7 +81,7 @@ export default function Navbar() {
                     lineHeight: 1,
                   }}
                 >
-                  MARINE GROUP
+                  MARINE
                 </div>
               </div>
             </div>

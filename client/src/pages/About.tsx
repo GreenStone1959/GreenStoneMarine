@@ -52,7 +52,7 @@ const team = [
     title: "Founder & Senior Broker",
     credentials: "CPYB · IYBA · 30 Years",
     img: BROKER1,
-    bio: "William founded Bluewater Marine Group in 1994 after a decade as a captain aboard superyachts in the Mediterranean and Caribbean. His encyclopedic knowledge of the South Florida market and global network of buyers and sellers has closed over $800 million in transactions.",
+    bio: "William founded GreenStone Marine in 1994 after a decade as a captain aboard superyachts in the Mediterranean and Caribbean. His encyclopedic knowledge of the South Florida market and global network of buyers and sellers has closed over $800 million in transactions.",
     specialty: "Superyachts · Commercial · Consulting",
   },
   {
@@ -131,7 +131,7 @@ export default function About() {
               lineHeight: 1.1,
             }}
           >
-            About Bluewater
+            About GreenStone
           </h1>
         </div>
       </section>
@@ -167,7 +167,7 @@ export default function About() {
                     marginBottom: "1.25rem",
                   }}
                 >
-                  Bluewater Marine Group was founded in Fort Lauderdale in 1994 by William Hartley, a former superyacht captain with a vision for a brokerage built on integrity, expertise, and genuine client service. What began as a boutique recreational yacht brokerage has grown into one of South Florida's most respected full-service marine firms.
+                  GreenStone Marine was founded in Fort Lauderdale in 1994 by William Hartley, a former superyacht captain with a vision for a brokerage built on integrity, expertise, and genuine client service. What began as a boutique recreational yacht brokerage has grown into one of South Florida's most respected full-service marine firms.
                 </p>
                 <p
                   style={{

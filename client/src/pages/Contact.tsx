@@ -153,8 +153,8 @@ export default function Contact() {
                   {
                     icon: Mail,
                     label: "Email",
-                    value: "info@bluewatermarine.com",
-                    href: "mailto:info@bluewatermarine.com",
+                    value: "info@greenstonemarine.com",
+                    href: "mailto:info@greenstonemarine.com",
                   },
                   {
                     icon: Clock,
@@ -486,7 +486,7 @@ export default function Contact() {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Bluewater Marine Group Location"
+              title="GreenStone Marine Location"
             />
             {/* Overlay badge */}
             <div
