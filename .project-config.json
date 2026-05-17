@@ -1,0 +1,35 @@
+{
+  "build_command": "pnpm run build",
+  "capabilities": [],
+  "dev_command": "pnpm run dev",
+  "env_vars": {},
+  "experiments": null,
+  "git_remote": {
+    "repo_url": "s3://vida-prod-gitrepo/webdev-git/94639188/UKpchEQotAqkrf88vZ55AY",
+    "access_key_id": "ASIAZV3A2ECZIYUQUPJY",
+    "secret_access_key": "9WD9e+7kDXB7cvkKpZ2RuZbTbHQKmzgjjlDg+cKj",
+    "session_token": "IQoJb3JpZ2luX2VjEOf//////////wEaCXVzLWVhc3QtMSJIMEYCIQDBaXIrDJtH/o6UeZJ7cvTYYlIF9mUVZrLX5DJ7J3tZUwIhAMT4JpPZEJF2XC0dJlvLFfuz5LIawSzFlRLxf920mD/iKusDCK///////////wEQBBoMNjY1Mzg2MDk4ODY2Igzu3E/s70cF/zaDTDoqvwNdhlQLt3JAFoWF8ZhYvwtRZ66VWvJJV6wLmpsZvevk+RSeOdVQKHiM+4WSziFaNOJ0v6LdqKkb8PbXQB7iTxnyYj3Og8tCYEwOe7QGS1EacOgAn7ePaUuWkWmHoD9dgT3m0A+1t+fsCnigN7L3Vmu+A5pfeR3JAdhnjE4m6OP+09XdtHkz4MsUOdSwLYBUk+URvq0SSSVUQAOGmDhIHN1CzX5Ad71oQ/FvPWaLK5NtW0ohEQqm5ccHC5SOLVS/5pqvNNAPKRE4jHGPOwckS5Tw4sFgqXBco2NSMwAqiBPb4CWwQApaehfVplHKFpdLJ6OOahbOtFc/D/vSpFYL8DgxUKmZF3ZKh9jgUI3rNW7BAudxqTLLk8bzCcEZiSNb7TBF1P3bfkX2e78KY2H+u20AlN/2h+1glVUbdrytdwS7aIdLS9DCzQtKR7ngwB0ApZw2UuOYpPm0bSDCOxITPvcXteQeRu9Efs6Xa4c4ZV8n8gFh2yDSInu8ra7WiRXwzhesHf74mheutWzfma7co4N6kfA4NfHXu/mmUOv37/51/hJD1ZCvBNY2tCEiVT2Qhzya8gK3ami80Noob5SdAF0wpPyo0AY6nAH5083dlz6DlnKVs4j/+BFdX/dZcy4lpPmVvfOpw/21M8uFxPtp2fK8Z8Zglch9H3HT3umPMw5+4Yv3v32wPu5RUb4Sv39tw+kXBfHNUvvgi5HmYto1sxc8KxHf2Cc2XOvsISFHM7DBoaCiRYqNNQZUAOwGsUlZYOWRd+v4WKtyuqBHFw9q+58kh5qWUoK7eopbxiZVDimpasF/L2o=",
+    "expiration": "2026-05-18T10:16:04.000Z"
+  },
+  "name": "bluewater-marine",
+  "path": "/home/ubuntu/bluewater-marine",
+  "port": 3000,
+  "secrets": {
+    "BUILT_IN_FORGE_API_KEY": "nubNhQMEFdMR2XMaTtw9k5",
+    "BUILT_IN_FORGE_API_URL": "https://forge.manus.ai",
+    "JWT_SECRET": "i2KDfodksFdmgLGjH2txic",
+    "OAUTH_SERVER_URL": "https://api.manus.im",
+    "OWNER_NAME": "Marcus Wylde",
+    "OWNER_OPEN_ID": "fviTCRfr7hBaLye7xgrCFY",
+    "VITE_ANALYTICS_ENDPOINT": "https://manus-analytics.com",
+    "VITE_ANALYTICS_WEBSITE_ID": "147b9d57-52b0-4fec-8743-80e2a111f6db",
+    "VITE_APP_ID": "UKpchEQotAqkrf88vZ55AY",
+    "VITE_APP_LOGO": "",
+    "VITE_APP_TITLE": "Bluewater Marine Group",
+    "VITE_FRONTEND_FORGE_API_KEY": "3c3hHFyXp9Qd3Yvik4Pcs2",
+    "VITE_FRONTEND_FORGE_API_URL": "https://forge.manus.ai",
+    "VITE_OAUTH_PORTAL_URL": "https://manus.im"
+  },
+  "template_id": "web-static",
+  "test_command": "pnpm test"
+}
