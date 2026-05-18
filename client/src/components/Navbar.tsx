@@ -55,10 +55,7 @@ export default function Navbar() {
                   background: "oklch(0.72 0.12 78 / 0.1)",
                 }}
               >
-                <Anchor
-                  size={16}
-                  style={{ color: "oklch(0.72 0.12 78)" }}
-                />
+                <Anchor size={16} style={{ color: "oklch(0.72 0.12 78)" }} />
               </div>
               <div>
                 <div
@@ -83,7 +80,7 @@ export default function Navbar() {
                     letterSpacing: "normal",
                   }}
                 >
-                  {'M·A·R·I·N·E'.split('·').map((char, i) => (
+                  {"M·A·R·I·N·E".split("·").map((char, i) => (
                     <span key={i}>{char}</span>
                   ))}
                 </div>
@@ -93,7 +90,7 @@ export default function Navbar() {
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
+            {navLinks.map(link => (
               <Link key={link.href} href={link.href}>
                 <span
                   className="nav-link"
@@ -118,16 +115,22 @@ export default function Navbar() {
           {/* CTA */}
           <div className="hidden lg:flex items-center gap-4">
             <a
-              href="tel:+19545550100"
+              href="tel:+17543008651"
               className="flex items-center gap-2 transition-colors duration-200"
               style={{ color: "oklch(0.72 0.12 78)", fontSize: "0.8rem" }}
             >
               <Phone size={14} />
-              <span style={{ fontFamily: "'Cinzel', serif", letterSpacing: "0.1em", fontSize: "0.7rem" }}>
-                (954) 555-0100
+              <span
+                style={{
+                  fontFamily: "'Cinzel', serif",
+                  letterSpacing: "0.1em",
+                  fontSize: "0.7rem",
+                }}
+              >
+                754-300-8651
               </span>
             </a>
-            <Link href="/contact">
+            <Link href="/contact#inquiry">
               <button
                 className="btn-press px-5 py-2.5 text-xs transition-all duration-200"
                 style={{
@@ -150,6 +153,8 @@ export default function Navbar() {
             onClick={() => setMenuOpen(!menuOpen)}
             style={{ color: "oklch(0.94 0.008 78)" }}
             aria-label="Toggle menu"
+            aria-expanded={menuOpen}
+            aria-controls="mobile-navigation"
           >
             {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -158,10 +163,14 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div
+        id="mobile-navigation"
         className="fixed inset-0 z-40 lg:hidden transition-all duration-400"
+        aria-hidden={!menuOpen}
+        inert={!menuOpen}
         style={{
           opacity: menuOpen ? 1 : 0,
           pointerEvents: menuOpen ? "all" : "none",
+          visibility: menuOpen ? "visible" : "hidden",
           background: "oklch(0.10 0.025 255 / 0.98)",
           backdropFilter: "blur(20px)",
         }}
@@ -188,7 +197,7 @@ export default function Navbar() {
           ))}
           <div className="gold-rule w-24 mt-4" />
           <a
-            href="tel:+19545550100"
+            href="tel:+17543008651"
             style={{
               fontFamily: "'Cinzel', serif",
               fontSize: "0.8rem",
@@ -196,9 +205,9 @@ export default function Navbar() {
               color: "oklch(0.72 0.12 78)",
             }}
           >
-            (954) 555-0100
+            754-300-8651
           </a>
-          <Link href="/contact">
+          <Link href="/contact#inquiry">
             <button
               className="btn-press px-8 py-3 mt-2"
               style={{

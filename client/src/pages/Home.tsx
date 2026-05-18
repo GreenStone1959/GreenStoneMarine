@@ -4,15 +4,28 @@
  */
 import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
-import { ArrowRight, ChevronDown, Star, Award, Shield, Compass } from "lucide-react";
+import {
+  ArrowRight,
+  ChevronDown,
+  Star,
+  Award,
+  Shield,
+  Compass,
+} from "lucide-react";
 
 // Image URLs (CDN)
-const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/hero-superyacht-WsNegnX7xPUAEJvvkpUX9b.webp";
-const MARINA_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/hero-marina-night-F8jqijuVdANGBVLvPj5ocq.webp";
-const SEAPLANE_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/seaplane-bahamas-YqWgSXsMhpYKXnWaJZfrsm.webp";
-const INTERIOR_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/yacht-interior-salon-fS9XPZaqyjN2yB9p4x88kz.webp";
-const TENDER_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/tender-boat-SCBBvdKJ5bdyakWSsiN3Aa.webp";
-const SHIP_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/commercial-ship-U3tVh5caiDG9FEVk6ogU7g.webp";
+const HERO_IMG =
+  "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/hero-superyacht-WsNegnX7xPUAEJvvkpUX9b.webp";
+const MARINA_IMG =
+  "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/hero-marina-night-F8jqijuVdANGBVLvPj5ocq.webp";
+const SEAPLANE_IMG =
+  "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/seaplane-bahamas-YqWgSXsMhpYKXnWaJZfrsm.webp";
+const INTERIOR_IMG =
+  "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/yacht-interior-salon-fS9XPZaqyjN2yB9p4x88kz.webp";
+const TENDER_IMG =
+  "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/tender-boat-SCBBvdKJ5bdyakWSsiN3Aa.webp";
+const SHIP_IMG =
+  "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/commercial-ship-U3tVh5caiDG9FEVk6ogU7g.webp";
 
 // Scroll-reveal hook
 function useReveal() {
@@ -20,7 +33,9 @@ function useReveal() {
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
+      ([entry]) => {
+        if (entry.isIntersecting) setVisible(true);
+      },
       { threshold: 0.12 }
     );
     if (ref.current) obs.observe(ref.current);
@@ -29,7 +44,15 @@ function useReveal() {
   return { ref, visible };
 }
 
-function RevealSection({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
+function RevealSection({
+  children,
+  delay = 0,
+  className = "",
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+}) {
   const { ref, visible } = useReveal();
   return (
     <div
@@ -53,7 +76,7 @@ const services = [
     subtitle: "Recreational Vessels",
     desc: "From express cruisers to superyachts, we represent the finest recreational vessels in the South Florida market. Our inventory spans 30 to 200+ feet across all major builders.",
     img: HERO_IMG,
-    href: "/listings",
+    href: "/listings?category=Yacht#inventory",
   },
   {
     roman: "II",
@@ -61,7 +84,7 @@ const services = [
     subtitle: "Commercial Fleet",
     desc: "Bulk carriers, tankers, container ships, and specialty vessels. We broker commercial maritime assets globally with deep expertise in USCG and international compliance.",
     img: SHIP_IMG,
-    href: "/listings",
+    href: "/listings?category=Commercial#inventory",
   },
   {
     roman: "III",
@@ -69,7 +92,7 @@ const services = [
     subtitle: "Yacht Tenders",
     desc: "Premium superyacht tenders, RIBs, and day boats. Whether you need a custom-built tender for a megayacht or a standalone sport vessel, we source the finest available.",
     img: TENDER_IMG,
-    href: "/listings",
+    href: "/listings?category=Tender#inventory",
   },
   {
     roman: "IV",
@@ -77,7 +100,7 @@ const services = [
     subtitle: "Amphibious Aircraft",
     desc: "A rare and exclusive specialty. We broker seaplanes for private ownership, charter operations, and island-hopping routes across South Florida and the Bahamas.",
     img: SEAPLANE_IMG,
-    href: "/listings",
+    href: "/listings?category=Seaplane#inventory",
   },
 ];
 
@@ -90,19 +113,22 @@ const stats = [
 
 const testimonials = [
   {
-    quote: "GreenStone Marine found us our 148-foot Feadship in under six weeks. Their market knowledge and negotiation expertise saved us over $2 million on the transaction.",
+    quote:
+      "GreenStone Marine found us our 148-foot Feadship in under six weeks. Their market knowledge and negotiation expertise saved us over $2 million on the transaction.",
     name: "James R.",
     title: "Private Buyer, Palm Beach",
     stars: 5,
   },
   {
-    quote: "We listed our 80-foot Viking with them and had a qualified buyer within 10 days. The entire process — survey, sea trial, closing — was handled flawlessly.",
+    quote:
+      "We listed our 80-foot Viking with them and had a qualified buyer within 10 days. The entire process — survey, sea trial, closing — was handled flawlessly.",
     name: "Catherine M.",
     title: "Seller, Fort Lauderdale",
     stars: 5,
   },
   {
-    quote: "Their commercial division handled the sale of three bulk carriers for our fleet. Exceptional professionalism and deep knowledge of international maritime law.",
+    quote:
+      "Their commercial division handled the sale of three bulk carriers for our fleet. Exceptional professionalism and deep knowledge of international maritime law.",
     name: "Rodrigo F.",
     title: "Fleet Manager, Miami",
     stars: 5,
@@ -113,9 +139,15 @@ export default function Home() {
   const [heroLoaded, setHeroLoaded] = useState(false);
 
   return (
-    <div className="min-h-screen" style={{ background: "oklch(0.12 0.025 255)" }}>
+    <div
+      className="min-h-screen"
+      style={{ background: "oklch(0.12 0.025 255)" }}
+    >
       {/* ===== HERO ===== */}
-      <section className="relative h-screen min-h-[700px] flex items-center overflow-hidden">
+      <section
+        id="home"
+        className="relative h-screen min-h-[700px] flex items-center overflow-hidden"
+      >
         {/* Background image */}
         <div className="absolute inset-0">
           <img
@@ -153,11 +185,10 @@ export default function Home() {
         {/* Content */}
         <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-10 w-full">
           <div className="max-w-2xl">
-            <div
-              className="fade-up"
-              style={{ animationDelay: "200ms" }}
-            >
-              <span className="section-label">Fort Lauderdale · South Florida</span>
+            <div className="fade-up" style={{ animationDelay: "200ms" }}>
+              <span className="section-label">
+                Fort Lauderdale · South Florida
+              </span>
               <div className="gold-line mt-3 mb-6" />
             </div>
 
@@ -189,14 +220,16 @@ export default function Home() {
                 animationDelay: "500ms",
               }}
             >
-              Premier yacht and commercial ship brokerage serving South Florida. Recreational yachts, commercial vessels, tenders, and seaplanes — from Miami to Palm Beach.
+              Premier yacht and commercial ship brokerage serving South Florida.
+              Recreational yachts, commercial vessels, tenders, and seaplanes —
+              from Miami to Palm Beach.
             </p>
 
             <div
               className="fade-up flex flex-wrap gap-4 mt-10"
               style={{ animationDelay: "650ms" }}
             >
-              <Link href="/listings">
+              <Link href="/listings#inventory">
                 <button
                   className="btn-press flex items-center gap-2 px-8 py-4 text-sm font-semibold transition-all duration-200"
                   style={{
@@ -211,7 +244,7 @@ export default function Home() {
                   <ArrowRight size={14} />
                 </button>
               </Link>
-              <Link href="/contact">
+              <Link href="/contact?inquiry=Vessel%20Valuation#inquiry">
                 <button
                   className="btn-press flex items-center gap-2 px-8 py-4 text-sm transition-all duration-200"
                   style={{
@@ -255,6 +288,7 @@ export default function Home() {
 
       {/* ===== INTRO STRIP ===== */}
       <section
+        id="credentials-strip"
         style={{
           background: "oklch(0.72 0.12 78)",
           padding: "1.25rem 0",
@@ -287,7 +321,11 @@ export default function Home() {
       </section>
 
       {/* ===== SERVICES GRID ===== */}
-      <section className="py-24 lg:py-32" style={{ background: "oklch(0.12 0.025 255)" }}>
+      <section
+        id="services-preview"
+        className="py-24 lg:py-32"
+        style={{ background: "oklch(0.12 0.025 255)" }}
+      >
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
           <RevealSection>
             <div className="flex items-start gap-8 mb-16">
@@ -305,7 +343,9 @@ export default function Home() {
                 >
                   A Full Spectrum of
                   <br />
-                  <em style={{ color: "oklch(0.72 0.12 78)" }}>Marine Services</em>
+                  <em style={{ color: "oklch(0.72 0.12 78)" }}>
+                    Marine Services
+                  </em>
                 </h2>
               </div>
             </div>
@@ -402,6 +442,7 @@ export default function Home() {
 
       {/* ===== BROKERAGE FEATURE ===== */}
       <section
+        id="brokerage"
         className="py-24 lg:py-32 relative overflow-hidden"
         style={{ background: "oklch(0.10 0.025 255)" }}
       >
@@ -423,7 +464,9 @@ export default function Home() {
                 >
                   Trusted Advisors
                   <br />
-                  <em style={{ color: "oklch(0.72 0.12 78)" }}>From Contract to Keys</em>
+                  <em style={{ color: "oklch(0.72 0.12 78)" }}>
+                    From Contract to Keys
+                  </em>
                 </h2>
                 <p
                   style={{
@@ -434,7 +477,10 @@ export default function Home() {
                     marginBottom: "1.5rem",
                   }}
                 >
-                  Whether you're buying or selling, our certified brokers guide every step of the transaction — valuation, listing strategy, buyer qualification, survey coordination, sea trials, and closing. We protect your interests throughout.
+                  Whether you're buying or selling, our certified brokers guide
+                  every step of the transaction — valuation, listing strategy,
+                  buyer qualification, survey coordination, sea trials, and
+                  closing. We protect your interests throughout.
                 </p>
                 <p
                   style={{
@@ -445,7 +491,10 @@ export default function Home() {
                     marginBottom: "2rem",
                   }}
                 >
-                  Our consulting practice extends beyond transactions to fleet management, regulatory compliance, refit oversight, and strategic acquisition advisory for private clients and corporate operators.
+                  Our consulting practice extends beyond transactions to fleet
+                  management, regulatory compliance, refit oversight, and
+                  strategic acquisition advisory for private clients and
+                  corporate operators.
                 </p>
                 <div className="grid grid-cols-2 gap-4 mb-8">
                   {[
@@ -455,7 +504,10 @@ export default function Home() {
                     { icon: Star, label: "5-Star Client Reviews" },
                   ].map(({ icon: Icon, label }) => (
                     <div key={label} className="flex items-center gap-3">
-                      <Icon size={16} style={{ color: "oklch(0.72 0.12 78)" }} />
+                      <Icon
+                        size={16}
+                        style={{ color: "oklch(0.72 0.12 78)" }}
+                      />
                       <span
                         style={{
                           color: "oklch(0.75 0.008 78)",
@@ -468,7 +520,7 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
-                <Link href="/services">
+                <Link href="/services#overview">
                   <button
                     className="btn-press flex items-center gap-2 px-8 py-4"
                     style={{
@@ -537,6 +589,7 @@ export default function Home() {
 
       {/* ===== STATS ===== */}
       <section
+        id="stats"
         className="py-20"
         style={{
           background: "oklch(0.12 0.025 255)",
@@ -573,7 +626,7 @@ export default function Home() {
       </section>
 
       {/* ===== MARINA FEATURE ===== */}
-      <section className="relative py-32 overflow-hidden">
+      <section id="south-florida" className="relative py-32 overflow-hidden">
         <div
           className="absolute inset-0"
           style={{
@@ -593,7 +646,9 @@ export default function Home() {
         <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-10">
           <RevealSection>
             <div className="max-w-xl">
-              <span className="section-label">The Yachting Capital of the World</span>
+              <span className="section-label">
+                The Yachting Capital of the World
+              </span>
               <div className="gold-line mt-3 mb-6" />
               <h2
                 style={{
@@ -607,7 +662,9 @@ export default function Home() {
               >
                 Based in Fort Lauderdale.
                 <br />
-                <em style={{ color: "oklch(0.72 0.12 78)" }}>Serving All of South Florida.</em>
+                <em style={{ color: "oklch(0.72 0.12 78)" }}>
+                  Serving All of South Florida.
+                </em>
               </h2>
               <p
                 style={{
@@ -618,9 +675,13 @@ export default function Home() {
                   marginBottom: "2rem",
                 }}
               >
-                Fort Lauderdale is home to more than 50,000 registered vessels and hosts the world's largest in-water boat show. Our deep roots in this community give our clients unmatched access to inventory, buyers, and maritime professionals across Miami-Dade, Broward, and Palm Beach counties.
+                Fort Lauderdale is home to more than 50,000 registered vessels
+                and hosts the world's largest in-water boat show. Our deep roots
+                in this community give our clients unmatched access to
+                inventory, buyers, and maritime professionals across Miami-Dade,
+                Broward, and Palm Beach counties.
               </p>
-              <Link href="/contact">
+              <Link href="/contact#inquiry">
                 <button
                   className="btn-press flex items-center gap-2 px-8 py-4"
                   style={{
@@ -643,7 +704,11 @@ export default function Home() {
       </section>
 
       {/* ===== TESTIMONIALS ===== */}
-      <section className="py-24 lg:py-32" style={{ background: "oklch(0.10 0.025 255)" }}>
+      <section
+        id="testimonials"
+        className="py-24 lg:py-32"
+        style={{ background: "oklch(0.10 0.025 255)" }}
+      >
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
           <RevealSection>
             <div className="text-center mb-16">
@@ -724,6 +789,7 @@ export default function Home() {
 
       {/* ===== CTA SECTION ===== */}
       <section
+        id="start"
         className="py-24"
         style={{
           background: "oklch(0.72 0.12 78)",
@@ -766,10 +832,12 @@ export default function Home() {
                 margin: "0 auto 2.5rem",
               }}
             >
-              Contact our team today for a confidential consultation. Whether buying, selling, or seeking expert marine advisory, we are here to serve.
+              Contact our team today for a confidential consultation. Whether
+              buying, selling, or seeking expert marine advisory, we are here to
+              serve.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
-              <Link href="/contact">
+              <Link href="/contact#inquiry">
                 <button
                   className="btn-press flex items-center gap-2 px-10 py-4"
                   style={{
@@ -785,7 +853,7 @@ export default function Home() {
                   <ArrowRight size={14} />
                 </button>
               </Link>
-              <Link href="/listings">
+              <Link href="/listings#inventory">
                 <button
                   className="btn-press flex items-center gap-2 px-10 py-4"
                   style={{

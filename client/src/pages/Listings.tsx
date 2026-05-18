@@ -2,21 +2,38 @@
  * LISTINGS PAGE — Nautical Noir Design System
  * Filterable vessel inventory with rich cards
  */
-import { useState } from "react";
-import { Link } from "wouter";
-import { ArrowRight, Search, SlidersHorizontal, MapPin, Ruler, Zap, Calendar } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Link, useLocation, useSearch } from "wouter";
+import {
+  ArrowRight,
+  Search,
+  SlidersHorizontal,
+  MapPin,
+  Ruler,
+  Zap,
+  Calendar,
+} from "lucide-react";
 
-const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/hero-marina-night-F8jqijuVdANGBVLvPj5ocq.webp";
-const TENDER_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/tender-boat-SCBBvdKJ5bdyakWSsiN3Aa.webp";
-const SHIP_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/commercial-ship-U3tVh5caiDG9FEVk6ogU7g.webp";
-const SEAPLANE_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/seaplane-bahamas-YqWgSXsMhpYKXnWaJZfrsm.webp";
-const HERO_YACHT = "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/hero-superyacht-WsNegnX7xPUAEJvvkpUX9b.webp";
-const INTERIOR_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/yacht-interior-salon-fS9XPZaqyjN2yB9p4x88kz.webp";
+const HERO_IMG =
+  "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/hero-marina-night-F8jqijuVdANGBVLvPj5ocq.webp";
+const TENDER_IMG =
+  "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/tender-boat-SCBBvdKJ5bdyakWSsiN3Aa.webp";
+const SHIP_IMG =
+  "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/commercial-ship-U3tVh5caiDG9FEVk6ogU7g.webp";
+const SEAPLANE_IMG =
+  "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/seaplane-bahamas-YqWgSXsMhpYKXnWaJZfrsm.webp";
+const HERO_YACHT =
+  "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/hero-superyacht-WsNegnX7xPUAEJvvkpUX9b.webp";
+const INTERIOR_IMG =
+  "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/yacht-interior-salon-fS9XPZaqyjN2yB9p4x88kz.webp";
 
 // Unsplash images for variety
-const YACHT2 = "https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=800&q=80";
-const YACHT3 = "https://images.unsplash.com/photo-1605281317010-fe5ffe798166?w=800&q=80";
-const YACHT4 = "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80";
+const YACHT2 =
+  "https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=800&q=80";
+const YACHT3 =
+  "https://images.unsplash.com/photo-1605281317010-fe5ffe798166?w=800&q=80";
+const YACHT4 =
+  "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80";
 
 type Category = "All" | "Yacht" | "Commercial" | "Tender" | "Seaplane";
 
@@ -143,13 +160,42 @@ const listings = [
   },
 ];
 
-const categories: Category[] = ["All", "Yacht", "Commercial", "Tender", "Seaplane"];
+const categories: Category[] = [
+  "All",
+  "Yacht",
+  "Commercial",
+  "Tender",
+  "Seaplane",
+];
+
+function isCategory(value: string | null): value is Category {
+  return value !== null && categories.includes(value as Category);
+}
+
+function getCategoryHref(category: Category) {
+  return category === "All"
+    ? "/listings#inventory"
+    : `/listings?category=${encodeURIComponent(category)}#inventory`;
+}
 
 export default function Listings() {
+  const [, navigate] = useLocation();
+  const search = useSearch();
   const [activeCategory, setActiveCategory] = useState<Category>("All");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const filtered = listings.filter((l) => {
+  useEffect(() => {
+    const params = new URLSearchParams(search);
+    const category = params.get("category");
+    setActiveCategory(isCategory(category) ? category : "All");
+  }, [search]);
+
+  const handleCategoryChange = (category: Category) => {
+    setActiveCategory(category);
+    navigate(getCategoryHref(category));
+  };
+
+  const filtered = listings.filter(l => {
     const matchCat = activeCategory === "All" || l.category === activeCategory;
     const matchSearch =
       !searchQuery ||
@@ -162,7 +208,10 @@ export default function Listings() {
   return (
     <div style={{ background: "oklch(0.12 0.025 255)", minHeight: "100vh" }}>
       {/* Page Hero */}
-      <section className="relative h-64 lg:h-80 flex items-end overflow-hidden">
+      <section
+        id="listings-top"
+        className="relative h-64 lg:h-80 flex items-end overflow-hidden"
+      >
         <div className="absolute inset-0">
           <img
             src={HERO_IMG}
@@ -197,6 +246,7 @@ export default function Listings() {
 
       {/* Filters */}
       <section
+        id="listing-filters"
         style={{
           background: "oklch(0.15 0.025 255)",
           borderBottom: "1px solid oklch(0.30 0.02 255)",
@@ -209,10 +259,10 @@ export default function Listings() {
           <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
             {/* Category filters */}
             <div className="flex flex-wrap gap-2">
-              {categories.map((cat) => (
+              {categories.map(cat => (
                 <button
                   key={cat}
-                  onClick={() => setActiveCategory(cat)}
+                  onClick={() => handleCategoryChange(cat)}
                   className="btn-press px-5 py-2 transition-all duration-200"
                   style={{
                     fontFamily: "'Cinzel', serif",
@@ -249,7 +299,7 @@ export default function Listings() {
                 type="text"
                 placeholder="Search by name, builder, location..."
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={e => setSearchQuery(e.target.value)}
                 className="pl-9 pr-4 py-2 text-sm w-72 outline-none"
                 style={{
                   background: "oklch(0.12 0.025 255)",
@@ -265,13 +315,16 @@ export default function Listings() {
       </section>
 
       {/* Listings Grid */}
-      <section className="py-12 lg:py-16">
+      <section id="inventory" className="py-12 lg:py-16">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
           {filtered.length === 0 ? (
             <div className="text-center py-24">
               <SlidersHorizontal
                 size={40}
-                style={{ color: "oklch(0.72 0.12 78 / 0.4)", margin: "0 auto 1rem" }}
+                style={{
+                  color: "oklch(0.72 0.12 78 / 0.4)",
+                  margin: "0 auto 1rem",
+                }}
               />
               <p
                 style={{
@@ -285,14 +338,17 @@ export default function Listings() {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-              {filtered.map((listing) => (
+              {filtered.map(listing => (
                 <div
                   key={listing.id}
                   className="vessel-card gold-border-card overflow-hidden flex flex-col"
                   style={{ background: "oklch(0.15 0.025 255)" }}
                 >
                   {/* Image */}
-                  <div className="relative overflow-hidden" style={{ height: "220px" }}>
+                  <div
+                    className="relative overflow-hidden"
+                    style={{ height: "220px" }}
+                  >
                     <img
                       src={listing.img}
                       alt={listing.name}
@@ -304,13 +360,15 @@ export default function Listings() {
                         className="absolute top-4 left-4 px-3 py-1"
                         style={{
                           background:
-                            listing.tag === "FEATURED" || listing.tag === "NEW LISTING"
+                            listing.tag === "FEATURED" ||
+                            listing.tag === "NEW LISTING"
                               ? "oklch(0.72 0.12 78)"
                               : listing.tag === "PRICE REDUCED"
-                              ? "oklch(0.577 0.245 27.325)"
-                              : "oklch(0.12 0.025 255 / 0.85)",
+                                ? "oklch(0.577 0.245 27.325)"
+                                : "oklch(0.12 0.025 255 / 0.85)",
                           color:
-                            listing.tag === "FEATURED" || listing.tag === "NEW LISTING"
+                            listing.tag === "FEATURED" ||
+                            listing.tag === "NEW LISTING"
                               ? "oklch(0.12 0.025 255)"
                               : "oklch(0.94 0.008 78)",
                           fontFamily: "'Cinzel', serif",
@@ -388,7 +446,10 @@ export default function Listings() {
                         { icon: Calendar, value: String(listing.year) },
                       ].map(({ icon: Icon, value }) => (
                         <div key={value} className="flex items-center gap-1.5">
-                          <Icon size={11} style={{ color: "oklch(0.72 0.12 78)" }} />
+                          <Icon
+                            size={11}
+                            style={{ color: "oklch(0.72 0.12 78)" }}
+                          />
                           <span
                             style={{
                               fontFamily: "'DM Sans', sans-serif",
@@ -405,7 +466,10 @@ export default function Listings() {
                     {/* Location + Price */}
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center gap-1.5">
-                        <MapPin size={11} style={{ color: "oklch(0.72 0.12 78)" }} />
+                        <MapPin
+                          size={11}
+                          style={{ color: "oklch(0.72 0.12 78)" }}
+                        />
                         <span
                           style={{
                             fontFamily: "'DM Sans', sans-serif",
@@ -429,7 +493,9 @@ export default function Listings() {
                     </div>
 
                     {/* CTA */}
-                    <Link href="/contact">
+                    <Link
+                      href={`/contact?inquiry=General%20Inquiry&listing=${encodeURIComponent(listing.name)}#inquiry`}
+                    >
                       <button
                         className="btn-press w-full py-3 flex items-center justify-center gap-2 transition-all duration-200"
                         style={{
@@ -453,7 +519,10 @@ export default function Listings() {
           )}
 
           {/* Bottom CTA */}
-          <div className="text-center mt-16 pt-12" style={{ borderTop: "1px solid oklch(0.30 0.02 255)" }}>
+          <div
+            className="text-center mt-16 pt-12"
+            style={{ borderTop: "1px solid oklch(0.30 0.02 255)" }}
+          >
             <p
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
@@ -465,7 +534,7 @@ export default function Listings() {
             >
               Don't see what you're looking for?
             </p>
-            <Link href="/contact">
+            <Link href="/contact?inquiry=Buying%20a%20Yacht#inquiry">
               <button
                 className="btn-press px-8 py-4 flex items-center gap-2 mx-auto"
                 style={{

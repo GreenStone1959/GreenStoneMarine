@@ -2,11 +2,23 @@
  * CONTACT PAGE — Nautical Noir Design System
  * Multi-channel contact, inquiry form, service area map
  */
-import { useState } from "react";
-import { MapPin, Phone, Mail, Clock, ArrowRight, CheckCircle } from "lucide-react";
+import { useEffect, useState } from "react";
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
+  ArrowRight,
+  CheckCircle,
+} from "lucide-react";
 import { toast } from "sonner";
+import { useSearch } from "wouter";
 
-const MARINA_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/hero-marina-night-F8jqijuVdANGBVLvPj5ocq.webp";
+const MARINA_IMG =
+  "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/hero-marina-night-F8jqijuVdANGBVLvPj5ocq.webp";
+const CONTACT_EMAIL = "greenstonemarine@gmail.com";
+const CONTACT_PHONE = "754-300-8651";
+const CONTACT_PHONE_HREF = "tel:+17543008651";
 
 const inquiryTypes = [
   "Buying a Yacht",
@@ -20,6 +32,7 @@ const inquiryTypes = [
 ];
 
 export default function Contact() {
+  const search = useSearch();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -30,8 +43,35 @@ export default function Contact() {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  useEffect(() => {
+    const params = new URLSearchParams(search);
+    const inquiry = params.get("inquiry");
+    const listing = params.get("listing");
+
+    setForm(prev => {
+      const nextInquiry = inquiryTypes.includes(inquiry ?? "")
+        ? (inquiry ?? "")
+        : "";
+      const shouldUseListingMessage =
+        !!listing &&
+        (!prev.message || prev.message.startsWith("I'm interested in "));
+
+      return {
+        ...prev,
+        inquiryType: nextInquiry || prev.inquiryType,
+        message: shouldUseListingMessage
+          ? `I'm interested in ${listing}.`
+          : prev.message,
+      };
+    });
+  }, [search]);
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -40,8 +80,25 @@ export default function Contact() {
       toast.error("Please fill in all required fields.");
       return;
     }
+
+    const subject = `GreenStone Marine Inquiry${form.inquiryType ? ` - ${form.inquiryType}` : ""}`;
+    const body = [
+      `Name: ${form.name}`,
+      `Email: ${form.email}`,
+      form.phone ? `Phone: ${form.phone}` : "",
+      form.inquiryType ? `Inquiry Type: ${form.inquiryType}` : "",
+      form.budget ? `Budget Range: ${form.budget}` : "",
+      "",
+      "Message:",
+      form.message,
+    ]
+      .filter(Boolean)
+      .join("\n");
+    const mailtoParams = new URLSearchParams({ subject, body });
+
+    window.location.href = `mailto:${CONTACT_EMAIL}?${mailtoParams.toString()}`;
     setSubmitted(true);
-    toast.success("Your inquiry has been received. We'll be in touch within 24 hours.");
+    toast.success("Your email draft is ready to send.");
   };
 
   const inputStyle = {
@@ -68,7 +125,10 @@ export default function Contact() {
   return (
     <div style={{ background: "oklch(0.12 0.025 255)", minHeight: "100vh" }}>
       {/* Page Hero */}
-      <section className="relative h-64 lg:h-72 flex items-end overflow-hidden">
+      <section
+        id="contact-top"
+        className="relative h-64 lg:h-72 flex items-end overflow-hidden"
+      >
         <div className="absolute inset-0">
           <img
             src={MARINA_IMG}
@@ -102,11 +162,11 @@ export default function Contact() {
       </section>
 
       {/* Main Content */}
-      <section className="py-16 lg:py-24">
+      <section id="contact-details" className="py-16 lg:py-24">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Contact Info */}
-            <div className="lg:col-span-1 space-y-8">
+            <div id="office" className="lg:col-span-1 space-y-8">
               <div>
                 <span className="section-label">Our Office</span>
                 <div className="gold-line mt-3 mb-5" />
@@ -132,7 +192,8 @@ export default function Contact() {
                     fontFamily: "'DM Sans', sans-serif",
                   }}
                 >
-                  Located in the heart of Fort Lauderdale's marine district, steps from Bahia Mar Marina and the Intracoastal Waterway.
+                  Located in the heart of Fort Lauderdale's marine district,
+                  steps from Bahia Mar Marina and the Intracoastal Waterway.
                 </p>
               </div>
 
@@ -142,24 +203,26 @@ export default function Contact() {
                   {
                     icon: MapPin,
                     label: "Address",
-                    value: "1 N. Ocean Blvd, Suite 200\nFort Lauderdale, FL 33316",
+                    value:
+                      "1 N. Ocean Blvd, Suite 200\nFort Lauderdale, FL 33316",
                   },
                   {
                     icon: Phone,
                     label: "Phone",
-                    value: "(954) 555-0100",
-                    href: "tel:+19545550100",
+                    value: CONTACT_PHONE,
+                    href: CONTACT_PHONE_HREF,
                   },
                   {
                     icon: Mail,
                     label: "Email",
-                    value: "info@greenstonemarine.com",
-                    href: "mailto:info@greenstonemarine.com",
+                    value: CONTACT_EMAIL,
+                    href: `mailto:${CONTACT_EMAIL}`,
                   },
                   {
                     icon: Clock,
                     label: "Hours",
-                    value: "Mon–Fri: 8am–6pm\nSat: 9am–4pm\nSun: By appointment",
+                    value:
+                      "Mon–Fri: 8am–6pm\nSat: 9am–4pm\nSun: By appointment",
                   },
                 ].map(({ icon: Icon, label, value, href }) => (
                   <div key={label} className="flex gap-4">
@@ -170,7 +233,10 @@ export default function Contact() {
                         border: "1px solid oklch(0.72 0.12 78 / 0.3)",
                       }}
                     >
-                      <Icon size={14} style={{ color: "oklch(0.72 0.12 78)" }} />
+                      <Icon
+                        size={14}
+                        style={{ color: "oklch(0.72 0.12 78)" }}
+                      />
                     </div>
                     <div>
                       <div
@@ -226,10 +292,16 @@ export default function Contact() {
                 <div className="section-label mb-3">Service Area</div>
                 <div className="space-y-2">
                   {[
-                    { city: "Miami / Miami Beach", county: "Miami-Dade County" },
+                    {
+                      city: "Miami / Miami Beach",
+                      county: "Miami-Dade County",
+                    },
                     { city: "Fort Lauderdale", county: "Broward County (HQ)" },
-                    { city: "Boca Raton / Palm Beach", county: "Palm Beach County" },
-                  ].map((area) => (
+                    {
+                      city: "Boca Raton / Palm Beach",
+                      county: "Palm Beach County",
+                    },
+                  ].map(area => (
                     <div key={area.city} className="flex items-center gap-2">
                       <div
                         className="w-1.5 h-1.5 rounded-full shrink-0"
@@ -265,6 +337,7 @@ export default function Contact() {
             {/* Inquiry Form */}
             <div className="lg:col-span-2">
               <div
+                id="inquiry"
                 className="p-8 lg:p-10"
                 style={{
                   background: "oklch(0.15 0.025 255)",
@@ -275,7 +348,10 @@ export default function Contact() {
                   <div className="flex flex-col items-center justify-center py-16 text-center">
                     <CheckCircle
                       size={48}
-                      style={{ color: "oklch(0.72 0.12 78)", marginBottom: "1.5rem" }}
+                      style={{
+                        color: "oklch(0.72 0.12 78)",
+                        marginBottom: "1.5rem",
+                      }}
                     />
                     <h3
                       style={{
@@ -297,7 +373,9 @@ export default function Contact() {
                         maxWidth: "400px",
                       }}
                     >
-                      Your inquiry has been received. A member of our team will contact you within 24 hours to discuss your needs.
+                      Your email draft has been prepared. Send it from your
+                      email client and a member of our team will contact you to
+                      discuss your needs.
                     </p>
                     <div className="gold-rule w-24 mt-6" />
                   </div>
@@ -364,10 +442,13 @@ export default function Contact() {
                             name="inquiryType"
                             value={form.inquiryType}
                             onChange={handleChange}
-                            style={{ ...inputStyle, appearance: "none" as const }}
+                            style={{
+                              ...inputStyle,
+                              appearance: "none" as const,
+                            }}
                           >
                             <option value="">Select inquiry type...</option>
-                            {inquiryTypes.map((t) => (
+                            {inquiryTypes.map(t => (
                               <option key={t} value={t}>
                                 {t}
                               </option>
@@ -386,9 +467,15 @@ export default function Contact() {
                         >
                           <option value="">Select budget range...</option>
                           <option value="Under $500K">Under $500,000</option>
-                          <option value="$500K–$1M">$500,000 – $1,000,000</option>
-                          <option value="$1M–$5M">$1,000,000 – $5,000,000</option>
-                          <option value="$5M–$15M">$5,000,000 – $15,000,000</option>
+                          <option value="$500K–$1M">
+                            $500,000 – $1,000,000
+                          </option>
+                          <option value="$1M–$5M">
+                            $1,000,000 – $5,000,000
+                          </option>
+                          <option value="$5M–$15M">
+                            $5,000,000 – $15,000,000
+                          </option>
                           <option value="$15M+">$15,000,000+</option>
                           <option value="Selling">I am selling a vessel</option>
                         </select>
@@ -418,7 +505,8 @@ export default function Contact() {
                           lineHeight: 1.6,
                         }}
                       >
-                        All inquiries are handled with strict confidentiality. We do not share your information with third parties.
+                        All inquiries are handled with strict confidentiality.
+                        We do not share your information with third parties.
                       </div>
 
                       <button
@@ -448,6 +536,7 @@ export default function Contact() {
 
       {/* Map Section */}
       <section
+        id="service-area"
         className="py-16"
         style={{
           background: "oklch(0.10 0.025 255)",
@@ -482,7 +571,10 @@ export default function Contact() {
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57445.23!2d-80.1417!3d26.1224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d9002f6e5f7b1d%3A0x3e2e5c4d8f1a2b3c!2sFort%20Lauderdale%2C%20FL!5e0!3m2!1sen!2sus!4v1234567890"
               width="100%"
               height="100%"
-              style={{ border: 0, filter: "invert(90%) hue-rotate(180deg) saturate(0.8)" }}
+              style={{
+                border: 0,
+                filter: "invert(90%) hue-rotate(180deg) saturate(0.8)",
+              }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

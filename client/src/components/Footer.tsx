@@ -3,7 +3,15 @@
  * Deep navy, gold accents, editorial layout
  */
 import { Link } from "wouter";
-import { Anchor, MapPin, Phone, Mail, Instagram, Facebook, Linkedin } from "lucide-react";
+import {
+  Anchor,
+  MapPin,
+  Phone,
+  Mail,
+  Instagram,
+  Facebook,
+  Linkedin,
+} from "lucide-react";
 
 export default function Footer() {
   return (
@@ -59,7 +67,9 @@ export default function Footer() {
                 fontFamily: "'DM Sans', sans-serif",
               }}
             >
-              Fort Lauderdale's premier marine brokerage. Specialists in recreational yachts, commercial vessels, tenders, and seaplanes — serving South Florida from Miami to Palm Beach.
+              Fort Lauderdale's premier marine brokerage. Specialists in
+              recreational yachts, commercial vessels, tenders, and seaplanes —
+              serving South Florida from Miami to Palm Beach.
             </p>
             <div className="flex gap-4 mt-6">
               {[Instagram, Facebook, Linkedin].map((Icon, i) => (
@@ -88,17 +98,20 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3">
               {[
-                "Yacht Sales",
-                "Commercial Ship Sales",
-                "Yacht Brokerage",
-                "Tender Sales",
-                "Seaplane Sales",
-                "Marine Consulting",
-                "Fleet Management",
-                "Acquisition Advisory",
-              ].map((item) => (
-                <li key={item}>
-                  <Link href="/services">
+                { label: "Yacht Sales", href: "/services#yacht-sales" },
+                {
+                  label: "Commercial Ship Sales",
+                  href: "/services#commercial-ship-sales",
+                },
+                { label: "Yacht Brokerage", href: "/services#yacht-sales" },
+                { label: "Tender Sales", href: "/services#tender-sales" },
+                { label: "Seaplane Sales", href: "/services#seaplane-sales" },
+                { label: "Marine Consulting", href: "/services#advisory" },
+                { label: "Fleet Management", href: "/services#advisory" },
+                { label: "Acquisition Advisory", href: "/services#advisory" },
+              ].map(item => (
+                <li key={item.label}>
+                  <Link href={item.href}>
                     <span
                       className="transition-colors duration-200 hover:text-[oklch(0.72_0.12_78)]"
                       style={{
@@ -107,7 +120,7 @@ export default function Footer() {
                         fontFamily: "'DM Sans', sans-serif",
                       }}
                     >
-                      {item}
+                      {item.label}
                     </span>
                   </Link>
                 </li>
@@ -125,13 +138,19 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3">
               {[
-                { label: "Current Listings", href: "/listings" },
-                { label: "About Our Team", href: "/about" },
-                { label: "Sell Your Vessel", href: "/services" },
-                { label: "Market Reports", href: "/about" },
-                { label: "Contact Us", href: "/contact" },
-                { label: "Request Valuation", href: "/contact" },
-              ].map((item) => (
+                { label: "Current Listings", href: "/listings#inventory" },
+                { label: "About Our Team", href: "/about#team" },
+                {
+                  label: "Sell Your Vessel",
+                  href: "/contact?inquiry=Selling%20a%20Vessel#inquiry",
+                },
+                { label: "Advisory Services", href: "/services#advisory" },
+                { label: "Contact Us", href: "/contact#contact-details" },
+                {
+                  label: "Request Valuation",
+                  href: "/contact?inquiry=Vessel%20Valuation#inquiry",
+                },
+              ].map(item => (
                 <li key={item.label}>
                   <Link href={item.href}>
                     <span
@@ -173,7 +192,8 @@ export default function Footer() {
                     fontFamily: "'DM Sans', sans-serif",
                   }}
                 >
-                  1 N. Ocean Blvd, Suite 200<br />
+                  1 N. Ocean Blvd, Suite 200
+                  <br />
                   Fort Lauderdale, FL 33316
                 </span>
               </li>
@@ -184,7 +204,7 @@ export default function Footer() {
                   style={{ color: "oklch(0.72 0.12 78)" }}
                 />
                 <a
-                  href="tel:+19545550100"
+                  href="tel:+17543008651"
                   className="transition-colors duration-200 hover:text-[oklch(0.72_0.12_78)]"
                   style={{
                     color: "oklch(0.60 0.015 255)",
@@ -192,7 +212,7 @@ export default function Footer() {
                     fontFamily: "'DM Sans', sans-serif",
                   }}
                 >
-                  (954) 555-0100
+                  754-300-8651
                 </a>
               </li>
               <li className="flex gap-3 items-center">
@@ -202,7 +222,7 @@ export default function Footer() {
                   style={{ color: "oklch(0.72 0.12 78)" }}
                 />
                 <a
-                  href="mailto:info@greenstonemarine.com"
+                  href="mailto:greenstonemarine@gmail.com"
                   className="transition-colors duration-200 hover:text-[oklch(0.72_0.12_78)]"
                   style={{
                     color: "oklch(0.60 0.015 255)",
@@ -210,7 +230,7 @@ export default function Footer() {
                     fontFamily: "'DM Sans', sans-serif",
                   }}
                 >
-                  info@greenstonemarine.com
+                  greenstonemarine@gmail.com
                 </a>
               </li>
             </ul>
@@ -259,10 +279,11 @@ export default function Footer() {
             fontFamily: "'DM Sans', sans-serif",
           }}
         >
-          © {new Date().getFullYear()} GreenStone Marine. All rights reserved. Fort Lauderdale, Florida.
+          © {new Date().getFullYear()} GreenStone Marine. All rights reserved.
+          Fort Lauderdale, Florida.
         </p>
         <div className="flex gap-6">
-          {["Privacy Policy", "Terms of Service", "IYBA Member"].map((item) => (
+          {["Privacy Policy", "Terms of Service", "IYBA Member"].map(item => (
             <span
               key={item}
               style={{

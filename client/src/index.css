@@ -49,13 +49,13 @@
 
   /* Nautical Noir custom tokens */
   --color-gold: oklch(0.72 0.12 78);
-  --color-gold-light: oklch(0.82 0.10 78);
-  --color-gold-dark: oklch(0.55 0.10 78);
+  --color-gold-light: oklch(0.82 0.1 78);
+  --color-gold-dark: oklch(0.55 0.1 78);
   --color-navy-deep: oklch(0.12 0.025 255);
   --color-navy-surface: oklch(0.17 0.025 255);
-  --color-navy-card: oklch(0.20 0.022 255);
+  --color-navy-card: oklch(0.2 0.022 255);
   --color-ivory: oklch(0.94 0.008 78);
-  --color-slate-marine: oklch(0.30 0.02 255);
+  --color-slate-marine: oklch(0.3 0.02 255);
 }
 
 :root {
@@ -68,29 +68,29 @@
   --popover-foreground: oklch(0.94 0.008 78);
   --primary: oklch(0.72 0.12 78);
   --primary-foreground: oklch(0.12 0.025 255);
-  --secondary: oklch(0.20 0.022 255);
+  --secondary: oklch(0.2 0.022 255);
   --secondary-foreground: oklch(0.94 0.008 78);
-  --muted: oklch(0.20 0.022 255);
+  --muted: oklch(0.2 0.022 255);
   --muted-foreground: oklch(0.65 0.015 255);
   --accent: oklch(0.72 0.12 78);
   --accent-foreground: oklch(0.12 0.025 255);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.30 0.02 255);
-  --input: oklch(0.20 0.022 255);
+  --border: oklch(0.3 0.02 255);
+  --input: oklch(0.2 0.022 255);
   --ring: oklch(0.72 0.12 78);
   --chart-1: oklch(0.72 0.12 78);
-  --chart-2: oklch(0.55 0.10 78);
-  --chart-3: oklch(0.82 0.10 78);
-  --chart-4: oklch(0.40 0.08 78);
+  --chart-2: oklch(0.55 0.1 78);
+  --chart-3: oklch(0.82 0.1 78);
+  --chart-4: oklch(0.4 0.08 78);
   --chart-5: oklch(0.65 0.015 255);
   --sidebar: oklch(0.15 0.025 255);
   --sidebar-foreground: oklch(0.94 0.008 78);
   --sidebar-primary: oklch(0.72 0.12 78);
   --sidebar-primary-foreground: oklch(0.12 0.025 255);
-  --sidebar-accent: oklch(0.20 0.022 255);
+  --sidebar-accent: oklch(0.2 0.022 255);
   --sidebar-accent-foreground: oklch(0.94 0.008 78);
-  --sidebar-border: oklch(0.30 0.02 255);
+  --sidebar-border: oklch(0.3 0.02 255);
   --sidebar-ring: oklch(0.72 0.12 78);
 
   /* Custom easing */
@@ -104,9 +104,12 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'DM Sans', sans-serif;
+    font-family: "DM Sans", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+  [id] {
+    scroll-margin-top: 6rem;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -120,8 +123,10 @@
     @apply cursor-pointer;
   }
 
-  h1, h2, h3 {
-    font-family: 'Cormorant Garamond', serif;
+  h1,
+  h2,
+  h3 {
+    font-family: "Cormorant Garamond", serif;
   }
 
   /* Scrollbar styling */
@@ -132,7 +137,7 @@
     background: oklch(0.12 0.025 255);
   }
   ::-webkit-scrollbar-thumb {
-    background: oklch(0.30 0.02 255);
+    background: oklch(0.3 0.02 255);
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
@@ -172,7 +177,12 @@
   /* Gold rule divider */
   .gold-rule {
     height: 1px;
-    background: linear-gradient(90deg, transparent, oklch(0.72 0.12 78), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      oklch(0.72 0.12 78),
+      transparent
+    );
   }
 
   /* Gold accent line */
@@ -184,7 +194,7 @@
 
   /* Section label style (Cinzel small caps) */
   .section-label {
-    font-family: 'Cinzel', serif;
+    font-family: "Cinzel", serif;
     font-size: 0.7rem;
     letter-spacing: 0.25em;
     text-transform: uppercase;
@@ -193,7 +203,7 @@
 
   /* Display headline */
   .display-headline {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: "Cormorant Garamond", serif;
     font-weight: 300;
     line-height: 1.1;
     letter-spacing: -0.01em;
@@ -201,11 +211,15 @@
 
   /* Vessel card hover */
   .vessel-card {
-    transition: transform 300ms var(--ease-out-snappy), box-shadow 300ms var(--ease-out-snappy);
+    transition:
+      transform 300ms var(--ease-out-snappy),
+      box-shadow 300ms var(--ease-out-snappy);
   }
   .vessel-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 20px 60px oklch(0 0 0 / 0.5), 0 0 0 1px oklch(0.72 0.12 78 / 0.3);
+    box-shadow:
+      0 20px 60px oklch(0 0 0 / 0.5),
+      0 0 0 1px oklch(0.72 0.12 78 / 0.3);
   }
 
   /* Button scale on press */
@@ -241,7 +255,7 @@
   /* Nav link hover */
   .nav-link {
     position: relative;
-    font-family: 'Cinzel', serif;
+    font-family: "Cinzel", serif;
     font-size: 0.7rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -249,7 +263,7 @@
     transition: color 200ms ease;
   }
   .nav-link::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -2px;
     left: 0;
@@ -267,7 +281,7 @@
 
   /* Roman numeral counter */
   .roman-counter {
-    font-family: 'Cinzel', serif;
+    font-family: "Cinzel", serif;
     font-size: 5rem;
     font-weight: 700;
     color: oklch(0.72 0.12 78 / 0.08);
@@ -294,7 +308,12 @@
 
   /* Text gradient gold */
   .text-gold-gradient {
-    background: linear-gradient(135deg, oklch(0.82 0.10 78), oklch(0.72 0.12 78), oklch(0.55 0.10 78));
+    background: linear-gradient(
+      135deg,
+      oklch(0.82 0.1 78),
+      oklch(0.72 0.12 78),
+      oklch(0.55 0.1 78)
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -302,12 +321,16 @@
 
   /* Image overlay */
   .img-overlay-dark {
-    background: linear-gradient(to bottom, oklch(0 0 0 / 0.2), oklch(0 0 0 / 0.7));
+    background: linear-gradient(
+      to bottom,
+      oklch(0 0 0 / 0.2),
+      oklch(0 0 0 / 0.7)
+    );
   }
 
   /* Stat number */
   .stat-number {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: "Cormorant Garamond", serif;
     font-weight: 600;
     font-size: 3.5rem;
     line-height: 1;

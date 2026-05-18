@@ -5,20 +5,34 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
 import {
-  ArrowRight, Ship, Anchor, Plane, Sailboat, BarChart3, FileText, Wrench, Globe
+  ArrowRight,
+  Ship,
+  Anchor,
+  Plane,
+  Sailboat,
+  BarChart3,
+  FileText,
+  Wrench,
+  Globe,
 } from "lucide-react";
 
-const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/hero-superyacht-WsNegnX7xPUAEJvvkpUX9b.webp";
-const SHIP_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/commercial-ship-U3tVh5caiDG9FEVk6ogU7g.webp";
-const SEAPLANE_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/seaplane-bahamas-YqWgSXsMhpYKXnWaJZfrsm.webp";
-const TENDER_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/tender-boat-SCBBvdKJ5bdyakWSsiN3Aa.webp";
+const HERO_IMG =
+  "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/hero-superyacht-WsNegnX7xPUAEJvvkpUX9b.webp";
+const SHIP_IMG =
+  "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/commercial-ship-U3tVh5caiDG9FEVk6ogU7g.webp";
+const SEAPLANE_IMG =
+  "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/seaplane-bahamas-YqWgSXsMhpYKXnWaJZfrsm.webp";
+const TENDER_IMG =
+  "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/tender-boat-SCBBvdKJ5bdyakWSsiN3Aa.webp";
 
 function useReveal() {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
+      ([entry]) => {
+        if (entry.isIntersecting) setVisible(true);
+      },
       { threshold: 0.1 }
     );
     if (ref.current) obs.observe(ref.current);
@@ -27,7 +41,15 @@ function useReveal() {
   return { ref, visible };
 }
 
-function RevealSection({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
+function RevealSection({
+  children,
+  delay = 0,
+  className = "",
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+}) {
   const { ref, visible } = useReveal();
   return (
     <div
@@ -47,6 +69,8 @@ function RevealSection({ children, delay = 0, className = "" }: { children: Reac
 const mainServices = [
   {
     icon: Anchor,
+    id: "yacht-sales",
+    contactHref: "/contact?inquiry=Buying%20a%20Yacht#inquiry",
     roman: "I",
     title: "Yacht Sales & Brokerage",
     subtitle: "Recreational Vessels",
@@ -63,6 +87,8 @@ const mainServices = [
   },
   {
     icon: Ship,
+    id: "commercial-ship-sales",
+    contactHref: "/contact?inquiry=Commercial%20Ship%20Inquiry#inquiry",
     roman: "II",
     title: "Commercial Ship Sales",
     subtitle: "Commercial Maritime",
@@ -79,6 +105,8 @@ const mainServices = [
   },
   {
     icon: Sailboat,
+    id: "tender-sales",
+    contactHref: "/contact?inquiry=Tender%20Inquiry#inquiry",
     roman: "III",
     title: "Tender Sales",
     subtitle: "Yacht Tenders & Day Boats",
@@ -95,6 +123,8 @@ const mainServices = [
   },
   {
     icon: Plane,
+    id: "seaplane-sales",
+    contactHref: "/contact?inquiry=Seaplane%20Inquiry#inquiry",
     roman: "IV",
     title: "Seaplane Sales",
     subtitle: "Amphibious Aircraft",
@@ -171,7 +201,10 @@ export default function Services() {
   return (
     <div style={{ background: "oklch(0.12 0.025 255)", minHeight: "100vh" }}>
       {/* Page Hero */}
-      <section className="relative h-64 lg:h-80 flex items-end overflow-hidden">
+      <section
+        id="services-top"
+        className="relative h-64 lg:h-80 flex items-end overflow-hidden"
+      >
         <div className="absolute inset-0">
           <img
             src={HERO_IMG}
@@ -205,12 +238,13 @@ export default function Services() {
       </section>
 
       {/* Main Services */}
-      <section className="py-20 lg:py-28">
+      <section id="overview" className="py-20 lg:py-28">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
           <div className="space-y-20">
             {mainServices.map((svc, i) => (
               <RevealSection key={svc.title} delay={0}>
                 <div
+                  id={svc.id}
                   className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
                     i % 2 === 1 ? "lg:flex-row-reverse" : ""
                   }`}
@@ -278,7 +312,7 @@ export default function Services() {
                       {svc.desc}
                     </p>
                     <ul className="space-y-2 mb-6">
-                      {svc.features.map((feat) => (
+                      {svc.features.map(feat => (
                         <li key={feat} className="flex items-center gap-3">
                           <div
                             className="w-1 h-1 rounded-full shrink-0"
@@ -296,7 +330,7 @@ export default function Services() {
                         </li>
                       ))}
                     </ul>
-                    <Link href="/contact">
+                    <Link href={svc.contactHref}>
                       <button
                         className="btn-press flex items-center gap-2 px-7 py-3"
                         style={{
@@ -325,6 +359,7 @@ export default function Services() {
 
       {/* Consulting Services */}
       <section
+        id="advisory"
         className="py-20 lg:py-28"
         style={{ background: "oklch(0.10 0.025 255)" }}
       >
@@ -353,7 +388,9 @@ export default function Services() {
                   margin: "1rem auto 0",
                 }}
               >
-                Our consulting practice provides strategic guidance to private clients, family offices, and corporate operators throughout the vessel lifecycle.
+                Our consulting practice provides strategic guidance to private
+                clients, family offices, and corporate operators throughout the
+                vessel lifecycle.
               </p>
             </div>
           </RevealSection>
@@ -372,7 +409,10 @@ export default function Services() {
                       border: "1px solid oklch(0.72 0.12 78 / 0.3)",
                     }}
                   >
-                    <svc.icon size={18} style={{ color: "oklch(0.72 0.12 78)" }} />
+                    <svc.icon
+                      size={18}
+                      style={{ color: "oklch(0.72 0.12 78)" }}
+                    />
                   </div>
                   <h3
                     style={{
@@ -403,7 +443,11 @@ export default function Services() {
       </section>
 
       {/* Buying Process */}
-      <section className="py-20 lg:py-28" style={{ background: "oklch(0.12 0.025 255)" }}>
+      <section
+        id="process"
+        className="py-20 lg:py-28"
+        style={{ background: "oklch(0.12 0.025 255)" }}
+      >
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
           <RevealSection>
             <div className="mb-14">
@@ -485,6 +529,7 @@ export default function Services() {
 
       {/* CTA */}
       <section
+        id="consultation"
         className="py-20"
         style={{
           background: "oklch(0.72 0.12 78)",
@@ -512,9 +557,10 @@ export default function Services() {
               lineHeight: 1.7,
             }}
           >
-            Contact our team for a confidential consultation. We'll match you with the right broker for your specific needs.
+            Contact our team for a confidential consultation. We'll match you
+            with the right broker for your specific needs.
           </p>
-          <Link href="/contact">
+          <Link href="/contact#inquiry">
             <button
               className="btn-press flex items-center gap-2 px-10 py-4 mx-auto"
               style={{

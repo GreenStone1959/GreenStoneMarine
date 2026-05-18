@@ -6,21 +6,29 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
 import { ArrowRight, Award, Shield, Users, TrendingUp } from "lucide-react";
 
-const MARINA_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/hero-marina-night-F8jqijuVdANGBVLvPj5ocq.webp";
-const INTERIOR_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/yacht-interior-salon-fS9XPZaqyjN2yB9p4x88kz.webp";
+const MARINA_IMG =
+  "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/hero-marina-night-F8jqijuVdANGBVLvPj5ocq.webp";
+const INTERIOR_IMG =
+  "https://d2xsxph8kpxj0f.cloudfront.net/94639188/UKpchEQotAqkrf88vZ55AY/yacht-interior-salon-fS9XPZaqyjN2yB9p4x88kz.webp";
 
 // Unsplash professional headshots
-const BROKER1 = "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80";
-const BROKER2 = "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80";
-const BROKER3 = "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80";
-const BROKER4 = "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80";
+const BROKER1 =
+  "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80";
+const BROKER2 =
+  "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80";
+const BROKER3 =
+  "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80";
+const BROKER4 =
+  "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80";
 
 function useReveal() {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
+      ([entry]) => {
+        if (entry.isIntersecting) setVisible(true);
+      },
       { threshold: 0.1 }
     );
     if (ref.current) obs.observe(ref.current);
@@ -29,7 +37,15 @@ function useReveal() {
   return { ref, visible };
 }
 
-function RevealSection({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
+function RevealSection({
+  children,
+  delay = 0,
+  className = "",
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+}) {
   const { ref, visible } = useReveal();
   return (
     <div
@@ -82,12 +98,36 @@ const team = [
 ];
 
 const credentials = [
-  { name: "IYBA", full: "International Yacht Brokers Association", desc: "Full member firm" },
-  { name: "FYBA", full: "Florida Yacht Brokers Association", desc: "Active member" },
-  { name: "CPYB", full: "Certified Professional Yacht Broker", desc: "All senior brokers certified" },
-  { name: "NMMA", full: "National Marine Manufacturers Association", desc: "Industry partner" },
-  { name: "USCG", full: "U.S. Coast Guard", desc: "Licensed documentation agents" },
-  { name: "FAA", full: "Federal Aviation Administration", desc: "Seaplane transaction specialists" },
+  {
+    name: "IYBA",
+    full: "International Yacht Brokers Association",
+    desc: "Full member firm",
+  },
+  {
+    name: "FYBA",
+    full: "Florida Yacht Brokers Association",
+    desc: "Active member",
+  },
+  {
+    name: "CPYB",
+    full: "Certified Professional Yacht Broker",
+    desc: "All senior brokers certified",
+  },
+  {
+    name: "NMMA",
+    full: "National Marine Manufacturers Association",
+    desc: "Industry partner",
+  },
+  {
+    name: "USCG",
+    full: "U.S. Coast Guard",
+    desc: "Licensed documentation agents",
+  },
+  {
+    name: "FAA",
+    full: "Federal Aviation Administration",
+    desc: "Seaplane transaction specialists",
+  },
 ];
 
 const milestones = [
@@ -103,7 +143,10 @@ export default function About() {
   return (
     <div style={{ background: "oklch(0.12 0.025 255)", minHeight: "100vh" }}>
       {/* Page Hero */}
-      <section className="relative h-64 lg:h-80 flex items-end overflow-hidden">
+      <section
+        id="about-top"
+        className="relative h-64 lg:h-80 flex items-end overflow-hidden"
+      >
         <div className="absolute inset-0">
           <img
             src={MARINA_IMG}
@@ -137,12 +180,14 @@ export default function About() {
       </section>
 
       {/* Company Story */}
-      <section className="py-20 lg:py-28">
+      <section id="story" className="py-20 lg:py-28">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <RevealSection>
               <div>
-                <span className="section-label">Est. 1994 · Fort Lauderdale</span>
+                <span className="section-label">
+                  Est. 1994 · Fort Lauderdale
+                </span>
                 <div className="gold-line mt-3 mb-6" />
                 <h2
                   style={{
@@ -156,7 +201,9 @@ export default function About() {
                 >
                   Thirty Years of
                   <br />
-                  <em style={{ color: "oklch(0.72 0.12 78)" }}>Maritime Excellence</em>
+                  <em style={{ color: "oklch(0.72 0.12 78)" }}>
+                    Maritime Excellence
+                  </em>
                 </h2>
                 <p
                   style={{
@@ -167,7 +214,12 @@ export default function About() {
                     marginBottom: "1.25rem",
                   }}
                 >
-                  GreenStone Marine was founded in Fort Lauderdale in 1994 by William Hartley, a former superyacht captain with a vision for a brokerage built on integrity, expertise, and genuine client service. What began as a boutique recreational yacht brokerage has grown into one of South Florida's most respected full-service marine firms.
+                  GreenStone Marine was founded in Fort Lauderdale in 1994 by
+                  William Hartley, a former superyacht captain with a vision for
+                  a brokerage built on integrity, expertise, and genuine client
+                  service. What began as a boutique recreational yacht brokerage
+                  has grown into one of South Florida's most respected
+                  full-service marine firms.
                 </p>
                 <p
                   style={{
@@ -178,7 +230,11 @@ export default function About() {
                     marginBottom: "1.25rem",
                   }}
                 >
-                  Today, our team of certified brokers and maritime specialists handles transactions across recreational yachts, commercial vessels, tenders, and seaplanes — serving clients from Miami to Palm Beach and beyond. Our global network spans over 40 countries.
+                  Today, our team of certified brokers and maritime specialists
+                  handles transactions across recreational yachts, commercial
+                  vessels, tenders, and seaplanes — serving clients from Miami
+                  to Palm Beach and beyond. Our global network spans over 40
+                  countries.
                 </p>
                 <p
                   style={{
@@ -188,7 +244,11 @@ export default function About() {
                     fontFamily: "'DM Sans', sans-serif",
                   }}
                 >
-                  We are proud members of the International Yacht Brokers Association (IYBA) and the Florida Yacht Brokers Association (FYBA), and all of our senior brokers hold the Certified Professional Yacht Broker (CPYB) designation — the highest standard in the industry.
+                  We are proud members of the International Yacht Brokers
+                  Association (IYBA) and the Florida Yacht Brokers Association
+                  (FYBA), and all of our senior brokers hold the Certified
+                  Professional Yacht Broker (CPYB) designation — the highest
+                  standard in the industry.
                 </p>
               </div>
             </RevealSection>
@@ -218,7 +278,7 @@ export default function About() {
                     { val: "500+", label: "Vessels Sold" },
                     { val: "$2.4B", label: "Transacted" },
                     { val: "40+", label: "Countries" },
-                  ].map((s) => (
+                  ].map(s => (
                     <div key={s.label} className="text-center">
                       <div
                         style={{
@@ -253,6 +313,7 @@ export default function About() {
 
       {/* Timeline */}
       <section
+        id="history"
         className="py-20"
         style={{
           background: "oklch(0.10 0.025 255)",
@@ -281,7 +342,10 @@ export default function About() {
             {/* Vertical line */}
             <div
               className="absolute left-0 lg:left-1/2 top-0 bottom-0 w-px"
-              style={{ background: "oklch(0.72 0.12 78 / 0.2)", transform: "translateX(-50%)" }}
+              style={{
+                background: "oklch(0.72 0.12 78 / 0.2)",
+                transform: "translateX(-50%)",
+              }}
             />
             <div className="space-y-8">
               {milestones.map((m, i) => (
@@ -294,7 +358,9 @@ export default function About() {
                     {/* Year side */}
                     <div
                       className={`lg:w-1/2 ${
-                        i % 2 === 0 ? "lg:text-right lg:pr-12" : "lg:text-left lg:pl-12"
+                        i % 2 === 0
+                          ? "lg:text-right lg:pr-12"
+                          : "lg:text-left lg:pl-12"
                       }`}
                     >
                       {i % 2 === 0 && (
@@ -334,7 +400,9 @@ export default function About() {
                     {/* Event side */}
                     <div
                       className={`lg:w-1/2 pl-8 lg:pl-0 ${
-                        i % 2 === 1 ? "lg:text-right lg:pr-12" : "lg:text-left lg:pl-12"
+                        i % 2 === 1
+                          ? "lg:text-right lg:pr-12"
+                          : "lg:text-left lg:pl-12"
                       }`}
                     >
                       {i % 2 === 1 && (
@@ -372,7 +440,11 @@ export default function About() {
       </section>
 
       {/* Team */}
-      <section className="py-20 lg:py-28" style={{ background: "oklch(0.12 0.025 255)" }}>
+      <section
+        id="team"
+        className="py-20 lg:py-28"
+        style={{ background: "oklch(0.12 0.025 255)" }}
+      >
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
           <RevealSection>
             <div className="mb-14">
@@ -398,7 +470,10 @@ export default function About() {
                   className="gold-border-card overflow-hidden"
                   style={{ background: "oklch(0.15 0.025 255)" }}
                 >
-                  <div className="relative overflow-hidden" style={{ height: "280px" }}>
+                  <div
+                    className="relative overflow-hidden"
+                    style={{ height: "280px" }}
+                  >
                     <img
                       src={member.img}
                       alt={member.name}
@@ -477,6 +552,7 @@ export default function About() {
 
       {/* Credentials */}
       <section
+        id="credentials"
         className="py-20"
         style={{
           background: "oklch(0.10 0.025 255)",
@@ -537,7 +613,11 @@ export default function About() {
       </section>
 
       {/* CTA */}
-      <section className="py-20" style={{ background: "oklch(0.12 0.025 255)" }}>
+      <section
+        id="work-with-us"
+        className="py-20"
+        style={{ background: "oklch(0.12 0.025 255)" }}
+      >
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10 text-center">
           <RevealSection>
             <h2
@@ -561,9 +641,10 @@ export default function About() {
                 lineHeight: 1.7,
               }}
             >
-              Contact us to be matched with the broker best suited to your specific vessel type, budget, and timeline.
+              Contact us to be matched with the broker best suited to your
+              specific vessel type, budget, and timeline.
             </p>
-            <Link href="/contact">
+            <Link href="/contact#inquiry">
               <button
                 className="btn-press flex items-center gap-2 px-10 py-4 mx-auto"
                 style={{
