@@ -57,7 +57,7 @@ export default function Navbar() {
               >
                 <Anchor size={16} style={{ color: "oklch(0.72 0.12 78)" }} />
               </div>
-              <div>
+              <div style={{ display: "flex", flexDirection: "column" }}>
                 <div
                   style={{
                     fontFamily: "'Cinzel', serif",
@@ -65,6 +65,7 @@ export default function Navbar() {
                     letterSpacing: "0.15em",
                     color: "oklch(0.94 0.008 78)",
                     lineHeight: 1.2,
+                    whiteSpace: "nowrap",
                   }}
                 >
                   GREENSTONE
@@ -75,14 +76,14 @@ export default function Navbar() {
                     fontSize: "0.55rem",
                     color: "oklch(0.72 0.12 78)",
                     lineHeight: 1,
-                    display: "flex",
-                    justifyContent: "space-between",
-                    letterSpacing: "normal",
+                    whiteSpace: "nowrap",
+                    /* MARINE is 6 chars vs GREENSTONE 10 chars at 0.9rem/0.15em.
+                       At 0.55rem, base char width ≈ 5.5px, GREENSTONE renders ~117px.
+                       MARINE needs ~117px across 6 chars: spacing = (117 - 6*5.5) / 5 gaps ≈ 16.8px ≈ 3.05em at 0.55rem */
+                    letterSpacing: "1.765em",
                   }}
                 >
-                  {"M·A·R·I·N·E".split("·").map((char, i) => (
-                    <span key={i}>{char}</span>
-                  ))}
+                  MARINE
                 </div>
               </div>
             </div>
